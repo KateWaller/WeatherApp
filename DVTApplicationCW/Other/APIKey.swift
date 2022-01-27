@@ -5,29 +5,29 @@
 //  Created by Kate Waller on 2022/01/18.
 //
 
+//File that stores API key. When running this on another device, a personal apikey will need to be created for OpenWeatherMapAPI
+
 import Foundation
 
 public class APIKey {
     
-    let OpenWeatherMapAPI = "ea9065f6bc341a618870b57a7191a285"
+    //When running on own device - add your own API Key
+    let OpenWeatherMapAPI = "INSERT YOUR OWN API KEY HERE"
     
     let OpenWeatherMapURL = "https://api.openweathermap.org/data/2.5/"
     
 
+    //Get user's location based on latittude and longitude
     func getWeatherDataLatLon(lat: Double, lon: Double, completion: @escaping (WeatherData?) -> Void = { weatherData in }) {
         
         let apiCall = "weather?lat=\(lat)&lon=\(lon)&units=metric&appid=\(self.OpenWeatherMapAPI)&lang=en"
         
         let apiURL = URL(string: OpenWeatherMapURL + apiCall)!
-        
         let request = URLRequest(url: apiURL)
-        //request.httpMethod = "GET"
-        //request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         
-        print(apiURL.absoluteString)
         let session = URLSession.shared
         let task = session.dataTask(with: request, completionHandler: { data, response, error -> Void in
-            //assume an error if data == nil
+           
             guard data != nil else {
                 completion(nil)
                 return
@@ -58,7 +58,7 @@ public class APIKey {
         print(apiURL.absoluteString)
         let session = URLSession.shared
         let task = session.dataTask(with: request, completionHandler: { data, response, error -> Void in
-            //assume an error if data == nil
+            
             guard data != nil else {
                 completion(nil)
                 return

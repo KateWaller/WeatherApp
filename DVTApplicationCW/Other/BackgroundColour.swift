@@ -5,6 +5,8 @@
 //  Created by Kate Waller on 2022/01/19.
 //
 
+//Extension file for background colour 
+
 import Foundation
 import UIKit
 
@@ -15,7 +17,7 @@ extension UIColor {
         if hex.hasPrefix("#") {
             let start = hex.index(hex.startIndex, offsetBy: 1)
             var hexColor = String(hex[start...])
-            if hexColor.count == 6 {    //If Alpha not specified, then add it
+            if hexColor.count == 6 {   
                 hexColor += "FF"
             }
             

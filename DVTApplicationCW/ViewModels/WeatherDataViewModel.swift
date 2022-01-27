@@ -5,6 +5,9 @@
 //  Created by Kate Waller on 2022/01/18.
 //
 
+//This ViewModel is used to get the data for the middle section that refers to min temp, max temp and displays an icon.
+
+
 import Foundation
 
 class WeatherDataViewModel: WeatherDetailsViewModel {
@@ -21,7 +24,7 @@ class WeatherDataViewModel: WeatherDetailsViewModel {
     
     func getWeatherData(completion: @escaping (_ success: Bool) -> Void = { success in }) {
         if let lat = self.lat, let lon = self.lon {
-            APIKEy.getWeatherDataLatLon(lat: lat, lon: lon) { weatherData in
+            apiKey.getWeatherDataLatLon(lat: lat, lon: lon) { weatherData in
                 self.weatherData = weatherData
                 
                 let success = (weatherData != nil)
@@ -36,7 +39,6 @@ class WeatherDataViewModel: WeatherDetailsViewModel {
         return weatherData != nil
     }
 
-    //Return a default value if weatherData not set, alternatively we could use "weatherData!." and rather cause a runtime error when called!
     var temp: Double {
         return weatherData?.main.temp ?? 0
     }
@@ -69,17 +71,14 @@ class WeatherDataViewModel: WeatherDetailsViewModel {
         return weatherData!.weather.first?.main.uppercased() ?? ""
     }
     
-    public var forecastDescription: String {
-        //return weatherData!.weather.first(where: { ($0.id == 500) || ($0.id == 501) })?.description.uppercased() ?? ""
+    var forecastDescription: String {
         return weatherData!.weather.first?.description.uppercased() ?? ""
     }
 
     public override var forecastType: IconType {
         return forecastType(forecast: forecastMain)
     }
+    
 
-//    public var _weatherData: WeatherData? { //Useful to have access to this data during Unit Tests, etc.
-//        return self.weatherData
-//    }
     
 }

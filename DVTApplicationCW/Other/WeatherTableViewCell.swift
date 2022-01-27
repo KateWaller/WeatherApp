@@ -9,8 +9,6 @@ import UIKit
 
 class WeatherTableViewCell: UITableViewCell {
     
-    
-    
     @IBOutlet weak var dayofWeek: UILabel!
     @IBOutlet weak var iconImage: UIImageView!
     @IBOutlet weak var tempLabel: UILabel!
